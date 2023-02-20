@@ -96,6 +96,34 @@ public partial class MainPage : ContentPage
         }
     }
 
+    void abajo(Button b)
+    {
+
+        Console.WriteLine("Entra abajo");
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                if (b.Text == botones[i, j].Text && (i != 3))
+                {
+                    int n = i + 1;
+                    if (botones[n, j].Text == " ")
+                    {
+
+                        Console.WriteLine("Bandera abajo");
+                        botones[n, j].Text = botones[i, j].Text;
+                        botones[n, j].BackgroundColor = Colors.White;
+                        botones[n, j].TextColor = Colors.Blue;
+                        botones[i, j].Text = " ";
+                        botones[i, j].BackgroundColor = Colors.Black;
+
+                    }
+                }
+            }
+        }
+    }
+
+
 
 
     void derecha(Button b)
@@ -134,7 +162,7 @@ public partial class MainPage : ContentPage
         {
             for (int j = 0; j < 4; j++)
             {
-                if (b.Text == botones[i, j].Text)
+                if (b.Text == botones[i, j].Text && (j!=0) )
                 {
                     Console.WriteLine("entro aqui");
                     int n = j - 1;
@@ -153,6 +181,32 @@ public partial class MainPage : ContentPage
         }
     }
 
+    void comprobar()
+    {
+        int contador = 1;
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                if (botones[i,j].Text == contador.ToString())
+                {
+                    Console.WriteLine("contador: "+contador + " num en Boton: " + botones[i,j].Text);
+                    contador++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+
+        if (contador.ToString() == "15" && botones[3,2].Text == "15") 
+        {
+            DisplayAlert("Ganaste", "Felicidades Ganaste!!!", "Ok");
+        }
+
+    }
+
 
     void btndorn_00_Clicked(System.Object sender, System.EventArgs e)
     {
@@ -165,8 +219,10 @@ public partial class MainPage : ContentPage
             izquierda(b);
 
             arriba(b);
-        
-        
+
+            abajo(b);
+
+        comprobar();
 
     }
 
